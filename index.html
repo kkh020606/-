@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 - 광안리</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes zoomIn {
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .hero-zoom {
+            animation: zoomIn 12s ease-in-out infinite alternate;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Equalizer Animation */
+        @keyframes equalizer1 {
+            0%, 100% { height: 8px; }
+            50% { height: 28px; }
+        }
+        @keyframes equalizer2 {
+            0%, 100% { height: 16px; }
+            50% { height: 8px; }
+        }
+        @keyframes equalizer3 {
+            0%, 100% { height: 12px; }
+            50% { height: 32px; }
+        }
+        @keyframes equalizer4 {
+            0%, 100% { height: 24px; }
+            50% { height: 10px; }
+        }
+        @keyframes equalizer5 {
+            0%, 100% { height: 10px; }
+            50% { height: 26px; }
+        }
+        @keyframes equalizer6 {
+            0%, 100% { height: 20px; }
+            50% { height: 12px; }
+        }
+        @keyframes equalizer7 {
+            0%, 100% { height: 14px; }
+            50% { height: 30px; }
+        }
+        @keyframes equalizer8 {
+            0%, 100% { height: 18px; }
+            50% { height: 6px; }
+        }
+        
+        .eq-bar {
+            width: 4px;
+            background: #E8EDDF;
+            border-radius: 2px;
+        }
+        .eq-bar:nth-child(1) { animation: equalizer1 0.75s ease-in-out infinite; }
+        .eq-bar:nth-child(2) { animation: equalizer2 0.6s ease-in-out infinite 0.05s; }
+        .eq-bar:nth-child(3) { animation: equalizer3 0.85s ease-in-out infinite 0.1s; }
+        .eq-bar:nth-child(4) { animation: equalizer4 0.7s ease-in-out infinite 0.15s; }
+        .eq-bar:nth-child(5) { animation: equalizer5 0.8s ease-in-out infinite 0.2s; }
+        .eq-bar:nth-child(6) { animation: equalizer6 0.65s ease-in-out infinite 0.25s; }
+        .eq-bar:nth-child(7) { animation: equalizer7 0.9s ease-in-out infinite 0.3s; }
+        .eq-bar:nth-child(8) { animation: equalizer8 0.72s ease-in-out infinite 0.35s; }
+        
+        /* Progress Bar */
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .progress-bar {
+            animation: progress 180s linear infinite;
+        }
+        
+        /* Rotate Vinyl */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-rotate {
+            animation: rotate 8s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-[#D8E0C8] text-[#002F6C] font-sans">
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden">
+        <div class="absolute inset-0 hero-zoom">
+            <img 
+                src="images/상단사진.jpg" 
+                alt="카페 전경" 
+                class="w-full h-full object-cover"
+            >
+        </div>
+        <div class="absolute inset-0 bg-black/30"></div>
+        
+        <!-- Language Switcher -->
+        <div class="absolute top-6 right-6 z-20">
+            <span class="text-white font-semibold mr-2">KOR</span>
+            <span class="text-white/40">|</span>
+            <a href="index_eng.html" class="text-white/60 hover:text-white transition-colors ml-2 font-light">ENG</a>
+        </div>
+        
+        <!-- Floating Music Player Bar - Small Left -->
+        <div class="absolute top-6 left-6 z-20">
+            <div class="bg-[#000000]/60 backdrop-blur-md rounded-xl p-3 flex items-center gap-3">
+                <!-- Album Art -->
+                <div class="relative w-10 h-10 flex-shrink-0">
+                    <div class="absolute inset-0 rounded-full bg-[#1a1a1a] vinyl-rotate flex items-center justify-center">
+                        <div class="w-4 h-4 rounded-full bg-[#333]"></div>
+                    </div>
+                    <div class="absolute inset-1 rounded-full bg-gradient-to-br from-[#B8C4A7] to-[#002F6C] opacity-90"></div>
+                </div>
+                
+                <!-- Track Info -->
+                <div class="min-w-0">
+                    <p class="text-[#E8EDDF] text-[10px] font-light uppercase tracking-widest opacity-80">Now Playing</p>
+                    <p class="text-white text-sm font-medium truncate max-w-[180px]">미키마츠바라 - Stay With Me</p>
+                </div>
+                
+                <!-- Equalizer -->
+                <div class="hidden md:flex items-end gap-[2px] h-6">
+                    <div class="eq-bar" style="width:3px;"></div>
+                    <div class="eq-bar" style="width:3px;"></div>
+                    <div class="eq-bar" style="width:3px;"></div>
+                    <div class="eq-bar" style="width:3px;"></div>
+                    <div class="eq-bar" style="width:3px;"></div>
+                </div>
+                
+                <!-- Play Button -->
+                <button class="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 hover:scale-105 transition-transform">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#002F6C" class="ml-0.5">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative h-full w-full flex items-center justify-center">
+            <div class="text-center px-6">
+                <h1 class="text-[#B8C4A7] text-5xl md:text-7xl lg:text-8xl font-bold tracking-wide mb-6 font-serif">
+                    FAVORITE
+                </h1>
+                <p class="text-[#E8EDDF] text-xl md:text-2xl lg:text-3xl font-light tracking-wide">
+                    부산 광안리에서 음악과 커피
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-32 px-6 scroll-reveal">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-light mb-16 font-serif">우리의 공간</h2>
+            <p class="text-lg md:text-xl leading-relaxed font-light">
+                광안리 바다 앞에 자리한, 모던하고 편안한 공간.
+                <br><br>
+                때로는 햇살이 가득한 오후의 휴식을,
+                <br>
+                때로는 달빛 아래 깊어지는 대화를.
+                <br><br>
+                당신이 머무는 그 순간만큼, 특별한 시간이 될 것입니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Menu Gallery Section -->
+    <section class="px-4 py-32 scroll-reveal bg-[#FDFBF7]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-light mb-12 px-2 font-serif">메뉴</h2>
+            
+            <!-- Drinks Section -->
+            <div class="mb-20">
+                <h3 class="text-lg font-light mb-8 px-2 opacity-60">음료</h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Signature Drink - Large -->
+                    <div class="col-span-2 row-span-2 overflow-hidden">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img 
+                                src="images/광안리 오로라 레몬에이드.jpg" 
+                                alt="광안리 오로라 레몬에이드" 
+                                class="w-full h-full object-cover object-center transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-6 text-center">
+                            <p class="text-xl font-medium">광안리 오로라 레몬에이드</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Gwangalli Aurora Lemonade</p>
+                            <p class="text-xs font-light opacity-60 mt-3 leading-relaxed">
+                                따뜻한 햇살 아래, 카페 안 가득한 초록 식물 사이에서 가장 돋보일 청량한 음료입니다. 상큼한 유자와 레몬 베이스에 (노란색), 천연 버터플라이피 티를 더해 (파란색), 광안리 바다의 푸른빛과 은은하게 퍼지는 오로라 같은 보랏빛 그라데이션을 완성했습니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Americano - Small -->
+                    <div class="overflow-hidden">
+                        <div class="aspect-square overflow-hidden">
+                            <img 
+                                src="images/아메리카노.jpg" 
+                                alt="아메리카노" 
+                                class="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-lg font-light">아메리카노</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Americano</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Caffe Latte - Small -->
+                    <div class="overflow-hidden">
+                        <div class="aspect-square overflow-hidden">
+                            <img 
+                                src="images/카페라떼.jpg" 
+                                alt="카페라떼" 
+                                class="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-lg font-light">카페라떼</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Caffe Latte</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Iced Tea - Small -->
+                    <div class="overflow-hidden">
+                        <div class="aspect-square overflow-hidden">
+                            <img 
+                                src="images/아이스티.jpg" 
+                                alt="아이스티" 
+                                class="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-lg font-light">아이스티</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Iced Tea</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desserts Section -->
+            <div>
+                <h3 class="text-lg font-light mb-8 px-2 opacity-60">디저트</h3>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Signature Dessert - Large -->
+                    <div class="col-span-2 row-span-2 overflow-hidden">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img 
+                                src="images/광안리 트로피컬 레인보우 파블로바.jpg" 
+                                alt="광안리 트로피컬 레인보우 파블로바" 
+                                class="w-full h-full object-cover object-center transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-6 text-center">
+                            <p class="text-xl font-medium">광안리 트로피컬 레인보우 파블로바</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Gwangalli Tropical Rainbow Pavlova</p>
+                            <p class="text-xs font-light opacity-60 mt-3 leading-relaxed">
+                                겉은 바삭하고 속은 부드러운 머랭 베이스 위에 가벼운 바닐라 크림을 듬뿍 얹고, 그 위에 딸기, 애플망고, 바나나, 키위, 블루베리, 블랙베리 등 신선한 열대 과일들을 무지개처럼 촘촘하게 배열했습니다. 디저트 사이로 식용 버터플라이피 꽃잎(블루 포인트)과 민트 잎(그린 포인트) 가니시를 더해 카페의 전반적인 분위기와 일관성을 유지하면서도 프리미엄 감성을 극대화했습니다. 창밖의 광안리 해변과 따뜻한 햇살을 배경으로 한 입 먹으면, 다채로운 과일의 풍미가 입안 가득 퍼질 것입니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cheesecake - Small -->
+                    <div class="overflow-hidden">
+                        <div class="aspect-square overflow-hidden">
+                            <img 
+                                src="images/치크케이크.jpg" 
+                                alt="치즈케이크" 
+                                class="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-lg font-light">치즈케이크</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Cheesecake</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Chocolate Cake - Small -->
+                    <div class="overflow-hidden">
+                        <div class="aspect-square overflow-hidden">
+                            <img 
+                                src="images/초코케이크.jpg" 
+                                alt="초코케이크" 
+                                class="w-full h-full object-cover transition-all duration-700 ease-out hover:scale-103"
+                            >
+                        </div>
+                        <div class="mt-4 text-center">
+                            <p class="text-lg font-light">초코케이크</p>
+                            <p class="text-sm font-light opacity-70 mt-1">Chocolate Cake</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Info Section -->
+    <footer class="py-32 px-6 scroll-reveal">
+        <div class="max-w-4xl mx-auto">
+            <!-- Top: Map & Instagram -->
+            <div class="flex flex-col sm:flex-row gap-8 items-center justify-center mb-10">
+                <!-- Map -->
+                <div class="w-full sm:w-auto">
+                    <a 
+                        href="https://map.kakao.com/?urlX=968580&urlY=465863&urlLevel=3&map_type=TYPE_MAP&map_hybrid=false" 
+                        target="_blank"
+                    >
+                        <img 
+                            width="504" 
+                            height="310" 
+                            src="https://staticmap.kakao.com/map/mapservice?FORMAT=PNG&SCALE=2.5&MX=968580&MY=465862&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL&logo=kakao_logo" 
+                            style="border:1px solid #ccc; width: 100%; max-width: 504px; height: auto;"
+                            alt="지도"
+                        >
+                    </a>
+                    <div style="overflow:hidden;padding:7px 11px;border:1px solid #dfdfdf;border-color:rgba(0,0,0,.1);border-radius:0 0 2px 2px;background-color:#f9f9f9;width:100%;max-width:504px;">
+                        <strong style="float: left;">
+                            <img src="//t1.kakaocdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" width="72" height="16" alt="카카오맵">
+                        </strong>
+                        <div style="float: right;position:relative">
+                            <a 
+                                style="font-size:12px;text-decoration:none;float:left;height:15px;padding-top:1px;line-height:15px;color:#000" 
+                                target="_blank" 
+                                href="https://map.kakao.com/?urlX=968580&urlY=465863&urlLevel=3&map_type=TYPE_MAP&map_hybrid=false"
+                            >
+                                지도 크게 보기
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instagram -->
+                <a 
+                    href="https://instagram.com/your_username" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-3 px-6 py-3 bg-[#002F6C] text-white rounded-full hover:bg-[#001f4a] transition-colors duration-300"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    <span class="text-lg font-light">@favorite_cafe</span>
+                </a>
+            </div>
+            
+            <!-- Bottom: Location & Hours -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+                <div>
+                    <h3 class="text-xl font-light mb-4">위치</h3>
+                    <p class="text-lg leading-relaxed font-light">
+                        부산광역시 수영구 광안해변로 123<br>
+                        광안리 해수욕장 앞
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-light mb-4">영업시간</h3>
+                    <p class="text-lg leading-relaxed font-light">
+                        매일 10:00 - 23:00<br>
+                        연중무휴
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-[#002F6C]/10">
+                <p class="text-sm font-light opacity-60 text-center">© 2024 FAVORITE - 광안리</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
